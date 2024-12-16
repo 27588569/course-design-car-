@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "../include/Executor.hpp"
+#include "./PoseEq.hpp"
 namespace adas
 {
 TEST(ExecutorFastTest, should_return_x_plus_2_given_status_is_fast_command_is_M_and_facing_is_E)
@@ -15,7 +16,7 @@ TEST(ExecutorFastTest, should_return_x_minus_2_given_status_is_fast_command_is_M
 {
     std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'W'}));
     executor->Execute("FM");
-    const Pose target({-2, 0, 'E'});
+    const Pose target({-2, 0, 'W'});
     ASSERT_EQ(target, executor->Query());
 }
 

@@ -19,6 +19,8 @@ void ExecutorImpl::Execute(const std::string& commands) noexcept  // 执行命�
             cmder = std::make_unique<TurnRightCommand>();
         } else if (ch == 'M') {
             cmder = std::make_unique<MoveCommand>();
+        } else if (ch == 'F') {
+            cmder = std::make_unique<FastCommand>();
         }
         if (cmder) {
             cmder->DoOperate(*this);
@@ -79,5 +81,13 @@ void ExecutorImpl ::TurnRight(void) noexcept
         pose.heading = 'N';
         break;
     }
+}
+void ExecutorImpl ::Fast(void) noexcept
+{
+    fast = !fast;
+}
+bool ExecutorImpl ::IsFast(void) const noexcept
+{
+    return fast;
 }
 }  // namespace adas
