@@ -23,7 +23,7 @@ TEST(ExecutorTest, should_return_x_plus_1_given_command_is_M_and_facing_is_E)
 {
     std::unique_ptr<Executor> executor(Executor::NewExecutor({1, 2, 'E'}));
     executor->Execute("M");
-    const Pose target({1, 2, 'E'});
+    const Pose target({2, 2, 'E'});
     ASSERT_EQ(target, executor->Query());
 }
 /*should_return_x_plus_1_given_command_is_M_and_facing_is_E
