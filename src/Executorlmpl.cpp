@@ -20,7 +20,8 @@ void ExecutorImpl::Execute(const std::string& commands) noexcept  // 执行命�
             TurnRight();
             break;
         case 'M':
-            Move();
+            std::unique_ptr<MoveCommand> cmder = std::make_unique<MoveCommand>();
+            cmder->DoOperate(*this);
         }
     }
 }
