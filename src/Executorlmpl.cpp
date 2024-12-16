@@ -15,7 +15,7 @@ void ExecutorImpl::Execute(const std::string& commands) noexcept  // 执行命�
     const int numDirections = 4;
 
     for (char ch : commands) {
-        switch (ch) {
+        switch (ch) {  // 用加减在数组中的位置实现转向
         case 'L':
             // 左转
             pose.heading = directions[(std::find(directions, directions + numDirections, pose.heading) - directions -
@@ -29,25 +29,29 @@ void ExecutorImpl::Execute(const std::string& commands) noexcept  // 执行命�
                            numDirections];
             break;
         case 'M':
-            switch (pose.heading) {
-            case 'N':
-                pose.y += 1;
-                break;
-            case 'E':
-                pose.x += 1;
-                break;
-            case 'S':
-                pose.y -= 1;
-                break;
-            case 'W':
-                pose.x -= 1;
-                break;
-            }
+            Move();
         }
     }
 }
 Pose ExecutorImpl::Query() const noexcept
 {
     return pose;
+}
+void ExecutorImpl ::Move() noexcept
+{
+    switch (pose.heading) {
+    case 'N':
+        pose.y += 1;
+        break;
+    case 'E':
+        pose.x += 1;
+        break;
+    case 'S':
+        pose.y -= 1;
+        break;
+    case 'W':
+        pose.x -= 1;
+        break;
+    }
 }
 }  // namespace adas

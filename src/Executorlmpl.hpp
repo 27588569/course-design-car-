@@ -4,10 +4,10 @@
 #include "../include/Executor.hpp"
 namespace adas
 {
-class ExecutorImpl final : public Executor  // final:���ܱ��̳�
+class ExecutorImpl final : public Executor
 {
 public:
-    explicit ExecutorImpl(const Pose& pose) noexcept;  // explicit:������ʾת��
+    explicit ExecutorImpl(const Pose& pose) noexcept;
     ~ExecutorImpl() noexcept = default;
     ExecutorImpl(const ExecutorImpl&) = delete;
     ExecutorImpl& operator=(const ExecutorImpl&) = delete;
@@ -18,5 +18,8 @@ public:
 
 private:
     Pose pose;
+
+private:
+    void Move(void) noexcept;
 };
 }  // namespace adas
