@@ -12,14 +12,15 @@ ExecutorImpl::ExecutorImpl(const Pose& pose) noexcept
 void ExecutorImpl::Execute(const std::string& commands) noexcept  // 执行命令
 {
     for (char ch : commands) {
+        std::unique_ptr<Icommand> cmder;
         if (ch == 'L') {
-            std::unique_ptr<TurnLeftCommand> cmder = std::make_unique<TurnLeftCommand>();
-            cmder->DoOperate(*this);
+            cmder = std::make_unique<TurnLeftCommand>();
         } else if (ch == 'R') {
-            std::unique_ptr<TurnRightCommand> cmder = std::make_unique<TurnRightCommand>();
-            cmder->DoOperate(*this);
+            cmder = std::make_unique<TurnRightCommand>();
         } else if (ch == 'M') {
-            std::unique_ptr<MoveCommand> cmder = std::make_unique<MoveCommand>();
+            cmder = std::make_unique<MoveCommand>();
+        }
+        if (cmder) {
             cmder->DoOperate(*this);
         }
     }
