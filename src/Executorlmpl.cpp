@@ -11,19 +11,13 @@ ExecutorImpl::ExecutorImpl(const Pose& pose) noexcept
 }
 void ExecutorImpl::Execute(const std::string& commands) noexcept  // 执行命令
 {
-    const char directions[] = {'N', 'E', 'S', 'W'};
-    const int numDirections = 4;
-
     for (char ch : commands) {
         switch (ch) {
         case 'L':
             TurnLeft();
             break;
         case 'R':
-            // 右转
-            pose.heading =
-                directions[(std::find(directions, directions + numDirections, pose.heading) - directions + 1) %
-                           numDirections];
+            TurnRight();
             break;
         case 'M':
             Move();
