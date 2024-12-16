@@ -16,9 +16,8 @@ void ExecutorImpl::Execute(const std::string& commands) noexcept  // 执行命�
             std::unique_ptr<TurnLeftCommand> cmder = std::make_unique<TurnLeftCommand>();
             cmder->DoOperate(*this);
         } else if (ch == 'R') {
-            TurnRight();
-            // std::unique_ptr<TurnRightCommand> cmder = std::make_unique<TurnRightCommand>();
-            // cmder->DoOperate(*this);
+            std::unique_ptr<TurnRightCommand> cmder = std::make_unique<TurnRightCommand>();
+            cmder->DoOperate(*this);
         } else if (ch == 'M') {
             std::unique_ptr<MoveCommand> cmder = std::make_unique<MoveCommand>();
             cmder->DoOperate(*this);
