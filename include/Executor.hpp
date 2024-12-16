@@ -10,12 +10,12 @@ struct Pose {
 class Executor
 {
 public:
-    static Executor* NewExecutor(const Pose& pose = {0, 0, 'N'}) noexcept;  // noexcept:�����׳�����
+    static Executor* NewExecutor(const Pose& pose = {0, 0, 'N'}) noexcept;
 
 public:
-    Executor(void) = default;            // default:Ĭ�Ϲ��캯��
-    virtual ~Executor(void) = default;   // virtual:��д
-    Executor(const Executor&) = delete;  // delete:���øú���
+    Executor(void) = default;
+    virtual ~Executor(void) = default;
+    Executor(const Executor&) = delete;
     Executor& operator=(const Executor&) = delete;
 
 public:
