@@ -3,6 +3,7 @@
 #include <memory>
 
 #include "../include/Executor.hpp"
+#include "./PoseHandler.hpp"
 namespace adas
 {
 class ExecutorImpl final : public Executor
@@ -18,14 +19,7 @@ public:
     Pose Query(void) const noexcept override;
 
 private:
-    Pose pose;
-    bool fast{false};
-
-public:
-    void Move(void) noexcept;
-    void TurnLeft(void) noexcept;
-    void TurnRight(void) noexcept;
-    void Fast(void) noexcept;
-    bool IsFast(void) const noexcept;
+    PoseHandler poseHandler;
 };
+
 }  // namespace adas

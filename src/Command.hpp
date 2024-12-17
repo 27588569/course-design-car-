@@ -1,56 +1,47 @@
 #pragma once
-#include "./Executorlmpl.hpp"
+#include <functional>
 
+#include "./PoseHandler.hpp"
 namespace adas
 {
-class Icommand
+
+class MoveCommand final
 {
 public:
-    virtual ~Icommand() = default;
-    virtual void DoOperate(ExecutorImpl& executor) const noexcept = 0;
+    const std::function<void(PoseHandler& poseHandler)> operate = [](PoseHandler& poseHandler) noexcept {
+        if (poseHandler.IsFast()) {
+            poseHandler.Move();
+        }
+        poseHandler.Move();
+    };
 };
 
-class MoveCommand final : public Icommand
+class TurnLeftCommand final
 {
 public:
-    void DoOperate(ExecutorImpl& executor) const noexcept override
-    {
-        if (executor.IsFast()) {
-            executor.Move();
+    const std::function<void(PoseHandler& poseHandler)> operate = [](PoseHandler& poseHandler) noexcept {
+        if (poseHandler.IsFast()) {
+            poseHandler.Move();
         }
-        executor.Move();
-    }
+        poseHandler.TurnLeft();
+    };
 };
 
-class TurnLeftCommand final : public Icommand
+class TurnRightCommand final
 {
 public:
-    void DoOperate(ExecutorImpl& executor) const noexcept override
-    {
-        if (executor.IsFast()) {
-            executor.Move();
+    const std::function<void(PoseHandler& poseHandler)> operate = [](PoseHandler& poseHandler) noexcept {
+        if (poseHandler.IsFast()) {
+            poseHandler.Move();
         }
-        executor.TurnLeft();
-    }
+        poseHandler.TurnRight();
+    };
 };
-
-class TurnRightCommand final : public Icommand
+class FastCommand final
 {
 public:
-    void DoOperate(ExecutorImpl& executor) const noexcept override
-    {
-        if (executor.IsFast()) {
-            executor.Move();
-        }
-        executor.TurnRight();
-    }
+    const std::function<void(PoseHandler& poseHandler)> operate = [](PoseHandler& poseHandler) noexcept {
+        poseHandler.Fast();
+    };
 };
-class FastCommand final : public Icommand
-{
-public:
-    void DoOperate(ExecutorImpl& executor) const noexcept override
-    {
-        executor.Fast();
-    }
-};
-}
+}  // namespace adas
