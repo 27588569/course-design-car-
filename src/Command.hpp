@@ -69,6 +69,7 @@ public:
         return actionGroup;
     };
 };
+
 class ReverseCommand final
 {
 public:
@@ -78,6 +79,23 @@ public:
         const auto action = ActionType::BE_REVERSE_ACTION;
         actionGroup.PushAction(action);
         return actionGroup;
+    };
+};
+
+class TurnRoundCommand final
+{
+public:
+    ActionGroup operator()(PoseHandler& poseHandler) noexcept
+    {
+        if (poseHandler.IsReverse()) {
+            return ActionGroup();
+        }
+        if (poseHandler.IsFast()) {
+            return ActionGroup({ActionType::FORWARD_1_STEP_ACTION, ActionType::TURNLEFT_ACTION,
+                                ActionType::FORWARD_1_STEP_ACTION, ActionType::TURNLEFT_ACTION});
+        }
+        return ActionGroup(
+            {ActionType::TURNLEFT_ACTION, ActionType::FORWARD_1_STEP_ACTION, ActionType::TURNLEFT_ACTION});
     };
 };
 }  // namespace adas
