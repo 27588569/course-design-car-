@@ -7,10 +7,11 @@ struct Pose {
     int y;
     char heading;
 };
+//carType: 'N' :NormolCar, 'S' ：Sports car, 'B' :Bus
 class Executor
 {
 public:
-    static Executor* NewExecutor(const Pose& pose = {0, 0, 'N'}) noexcept;
+    static Executor* NewExecutor(const Pose& pose = {0, 0, 'N'},char carType='N') noexcept;
 
 public:
     Executor(void) = default;

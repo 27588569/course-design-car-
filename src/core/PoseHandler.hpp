@@ -6,7 +6,7 @@ namespace adas
 class PoseHandler final
 {
 public:
-    PoseHandler(const Pose& pose) noexcept;
+    PoseHandler(const Pose& pose,char carType) noexcept;
     PoseHandler(const PoseHandler&) = delete;
     PoseHandler& operator=(const PoseHandler&) = delete;
 
@@ -20,10 +20,12 @@ public:
     void Reverse(void) noexcept;
     bool IsReverse(void) const noexcept;
     Pose Query(void) const noexcept;
+    char GetCarType(void) const noexcept;
 
 private:
     Point point;
     const Direction* facing;
+    char carType;
     bool fast{false};
     bool reverse{false};
 };

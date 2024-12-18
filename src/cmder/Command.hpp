@@ -14,10 +14,21 @@ public:
         ActionGroup actionGroup;
         const auto action =
             poseHandler.IsReverse() ? ActionType::BACKWARD_1_STEP_ACTION : ActionType::FORWARD_1_STEP_ACTION;
+        if(poseHandler.GetCarType() == 'N' || poseHandler.GetCarType() == 'B'){
         if (poseHandler.IsFast()) {
             actionGroup.PushAction(action);
         }
+        actionGroup.PushAction(action);}
+
+
+        else if(poseHandler.GetCarType() == 'S'){
+        if (poseHandler.IsFast()) {
+            actionGroup.PushAction(action);
+            actionGroup.PushAction(action);
+        }
         actionGroup.PushAction(action);
+        actionGroup.PushAction(action);
+        }
         return actionGroup;
     }
 };
@@ -32,10 +43,27 @@ public:
             poseHandler.IsReverse() ? ActionType::BACKWARD_1_STEP_ACTION : ActionType::FORWARD_1_STEP_ACTION;
         const auto action2 =
             poseHandler.IsReverse() ? ActionType::REVERSE_TURNLEFT_ACTION : ActionType::TURNLEFT_ACTION;
+        if(poseHandler.GetCarType() == 'N'){
         if (poseHandler.IsFast()) {
             actionGroup.PushAction(action);
         }
-        actionGroup.PushAction(action2);
+        actionGroup.PushAction(action2);} 
+
+        else if(poseHandler.GetCarType() == 'S'){
+            if (poseHandler.IsFast()) {
+            actionGroup.PushAction(action);
+        }
+            actionGroup.PushAction(action2);
+            actionGroup.PushAction(action);
+        }
+
+        else if(poseHandler.GetCarType() == 'B'){
+             if (poseHandler.IsFast()) {
+            actionGroup.PushAction(action);
+        }
+            actionGroup.PushAction(action);
+            actionGroup.PushAction(action2);
+        }
         return actionGroup;
     };
 };
@@ -50,10 +78,27 @@ public:
             poseHandler.IsReverse() ? ActionType::BACKWARD_1_STEP_ACTION : ActionType::FORWARD_1_STEP_ACTION;
         const auto action2 =
             poseHandler.IsReverse() ? ActionType::REVERSE_TURNRIGHT_ACTION : ActionType::TURNRIGHT_ATION;
+        if(poseHandler.GetCarType() == 'N'){
         if (poseHandler.IsFast()) {
             actionGroup.PushAction(action);
         }
-        actionGroup.PushAction(action2);
+        actionGroup.PushAction(action2);} 
+
+        else if(poseHandler.GetCarType() == 'S'){
+            if (poseHandler.IsFast()) {
+            actionGroup.PushAction(action);
+        }
+            actionGroup.PushAction(action2);
+            actionGroup.PushAction(action);
+        }
+
+        else if(poseHandler.GetCarType() == 'B'){
+             if (poseHandler.IsFast()) {
+            actionGroup.PushAction(action);
+        }
+            actionGroup.PushAction(action);
+            actionGroup.PushAction(action2);
+        }
         return actionGroup;
     };
 };

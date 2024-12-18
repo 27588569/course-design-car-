@@ -7,11 +7,11 @@
 #include "./core/Singleton.hpp"
 namespace adas
 {
-Executor* Executor::NewExecutor(const Pose& pose) noexcept
+Executor* Executor::NewExecutor(const Pose& pose,char carType) noexcept
 {
-    return new (std::nothrow) ExecutorImpl(pose);
+    return new (std::nothrow) ExecutorImpl(pose,carType);
 }
-ExecutorImpl::ExecutorImpl(const Pose& pose) noexcept : poseHandler(pose)
+ExecutorImpl::ExecutorImpl(const Pose& pose,char carType) noexcept : poseHandler(pose,carType)
 {
 }
 void ExecutorImpl::Execute(const std::string& commands) noexcept  // 执行命令
