@@ -1,4 +1,5 @@
 #include "./PoseHandler.hpp"
+
 namespace adas
 {
 PoseHandler::PoseHandler(const Pose& pose) noexcept
