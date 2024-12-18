@@ -52,11 +52,11 @@ TEST(ExecutorFastTest, should_return_S_and_x_plus_1_given_status_is_fast_command
     ASSERT_EQ(target, executor->Query());
 }
 
-/*TEST(ExecutorFastTest, should_return_y_plus_1_given_command_is_FFM_and_facing_is_N)
+TEST(ExecutorFastTest, should_return_y_plus_1_given_command_is_FFM_and_facing_is_N)
 {
     std::unique_ptr<Executor> executor(Executor::NewExecutor());
     executor->Execute("FFM");
     const Pose target({0, 1, 'N'});
     ASSERT_EQ(target, executor->Query());
-}*/
+}
 }  // namespace adas
